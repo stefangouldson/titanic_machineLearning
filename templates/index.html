@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>Titanic Machine Learning</title>
+</head>
+<body>
+    <div class="jumbotron text-center">
+        <h1>Get your Titanic predictions here</h1>
+        <p>Enter the details of yourself or a made up passenger</p>
+        <p>The machine learning model will calculate and predict whether or not you survived</p>
+    </div>
+<div class="container">
+    <img width="100%" src="https://cdn.britannica.com/72/153172-050-EB2F2D95/Titanic.jpg" alt="picture of titanic">
+    <hr>
+    <form action="{% url 'result' %}">
+        {% csrf_token %}
+
+        <div class="form-group">
+            <label for="title">Title</label>
+            <select name="title" id="title" class="form-control" aria-describedby="titlehelp">
+                <option selected disabled hidden>Select Title</option>
+                <option value="0">Mr</option>
+                <option value="1">Miss</option>
+                <option value="2">Mrs</option>
+                <option value="3">Master</option>
+                <option value="4">Dr</option>
+                <option value="5">Rev</option>
+                <option value="6">Officer</option>
+                <option value="7">Royalty</option>
+            </select>
+            <small id="titlehelp" class="text-muted form-text">Some titles have been condenced into one type, for example memebers of the military would select officer</small>
+        </div>
+
+        <div class="form-group">
+            <label for="first_name">First Name</label>
+            <input type="text" class="form-control" placeholder="Enter First Name" name="first_name" required>
+        </div>
+
+        <div class="form-group">
+            <label for="last_name">Last Name</label>
+            <input type="text" class="form-control" placeholder="Enter Last Name" name="last_name" required>
+        </div>
+
+        <div class="form-group">
+            <label for="pclass">Class</label>
+            <select name="pclass" id="pclass" class="form-control" required>
+                <option selected disabled hidden>Select Class</option>
+                <option value="1">1st Class</option>
+                <option value="2">2nd Class</option>
+                <option value="3">3rd Class</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="sex">Gender</label>
+            <select name="sex" id="sex" class="form-control" required>
+                <option selected disabled hidden>Select Gender</option>
+                <option value="0">Male</option>
+                <option value="1">Female</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="age">Age</label>
+            <input type="number" name="age" class="form-control" placeholder="Enter Age" required>
+        </div>
+
+        <div class="form-group">
+            <label for="sibsp">Siblings/Spouses</label>
+            <input type="number" name="sibsp" class="form-control" placeholder="How many siblings and or spouses" required>
+        </div>
+
+        <div class="form-group">
+            <label for="parch">Parents/Children</label>
+            <input type="number" name="parch" class="form-control" placeholder="How many parents/children" required>
+        </div>
+
+        <div class="form-group">
+            <label for="fare">Fare</label>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">£</div>
+                  </div>
+                <input type="number" name="fare" class="form-control" aria-describedby='farehelp' placeholder="Enter how much did your ticket cost" required>
+            </div>
+            <small id="farehelp" class="text-muted form-text">Fares were mostly between 0-50, however tickets did go up to 250</small>
+        </div>
+
+        <div class="form-group">
+            <label for="embarked">Embarked From?</label>
+            <select name="embarked" id="embarked" class="form-control" required>
+                <option selected disabled hidden>Select Port</option>
+                <option value="1">Cherbourg</option>
+                <option value="2">Queenstown</option>
+                <option value="0">Southampton</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <input type="submit" value="Submit" class="btn btn-secondary">
+        </div>
+    </form>
+
+</div>
+</body>
+</html>
